@@ -106,6 +106,63 @@ class EvolvableAdapter(nn.Module):
 
 
 # ==========================================
+# 1B. UNIVERSAL ADAPTER (Skip Connections)
+# ==========================================
+
+class SkipAdapter(nn.Module):
+    """
+    Universal adapter with skip connections for 100% reconstruction on ANY input.
+    Non-autoregressive: logits[i] predicts token[i] directly.
+    """
+    
+    def __init__(self, d=128, n_heads=4, n_layers=4, ff_mult=4, max_len=2048):
+        super().__init__()
+        self.d = d
+        self.max_len = max_len
+        self.token_emb = nn.Embedding(256, d)
+        self.pos_emb = nn.Embedding(max_len, d)
+        
+        self.enc_layers = nn.ModuleList()
+        for _ in range(n_layers):
+            self.enc_layers.append(
+                nn.TransformerEncoderLayer(d, n_heads, d * ff_mult, 0.0, batch_first=True, activation='gelu')
+            )
+        
+        self.bottleneck = nn.Sequential(nn.Linear(d, d), nn.GELU(), nn.Linear(d, d))
+        
+        self.dec_layers = nn.ModuleList()
+        for i in range(n_layers):
+            input_dim = d * 2 if i == 0 else d
+            self.dec_layers.append(
+                nn.TransformerDecoderLayer(d, n_heads, input_dim * ff_mult, 0.0, batch_first=True, activation='gelu')
+            )
+        
+        self.skip_proj = nn.Linear(d * 2, d)
+        self.head = nn.Linear(d, 256)
+    
+    def forward(self, x):
+        B, T = x.shape
+        pos = torch.arange(T, device=x.device).unsqueeze(0).expand(B, -1)
+        h = self.token_emb(x) + self.pos_emb(pos)
+        
+        for layer in self.enc_layers:
+            h = layer(h)
+        enc_out = h
+        
+        latent = self.bottleneck(h)
+        
+        dec_in = self.pos_emb(torch.arange(T, device=x.device)).unsqueeze(0).expand(B, -1, -1)
+        combined = torch.cat([dec_in, enc_out], dim=-1)
+        combined = self.skip_proj(combined)
+        h = self.dec_layers[0](combined, latent)
+        
+        for layer in self.dec_layers[1:]:
+            h = layer(h, latent)
+        
+        return self.head(h), latent, T
+
+
+# ==========================================
 # 2. TRAINING DATA
 # ==========================================
 
