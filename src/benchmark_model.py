@@ -43,6 +43,7 @@ class EvolvableAdapter(nn.Module):
         self.compression_ratio = config.get('compression_ratio', 1.0)
         self.max_seq_len = config.get('max_seq_len', 1024)
         self.d_model = d_model
+        use_relu = config.get('activation', 'gelu') == 'relu'
 
         while d_model % n_heads != 0 and n_heads > 1:
             n_heads -= 1
@@ -52,35 +53,45 @@ class EvolvableAdapter(nn.Module):
 
         enc_layer = nn.TransformerEncoderLayer(
             d_model=d_model, nhead=n_heads, dim_feedforward=d_model * ff_mult,
-            dropout=dropout, batch_first=True, norm_first=True
+            dropout=dropout, batch_first=True,
+            activation='relu' if use_relu else 'gelu',
         )
         self.encoder = nn.TransformerEncoder(enc_layer, num_layers=n_enc)
 
-        self.compress_proj = nn.Sequential(
-            nn.Linear(d_model, d_model * 2), nn.GELU(), nn.Linear(d_model * 2, d_model)
-        )
+        self.compress_proj = nn.Linear(d_model, d_model)
 
         dec_layer = nn.TransformerDecoderLayer(
             d_model=d_model, nhead=n_heads, dim_feedforward=d_model * ff_mult,
-            dropout=dropout, batch_first=True, norm_first=True
+            dropout=dropout, batch_first=True,
+            activation='relu' if use_relu else 'gelu',
         )
         self.decoder = nn.TransformerDecoder(dec_layer, num_layers=n_dec)
         self.output_head = nn.Linear(d_model, vocab_size)
 
-    def forward(self, x):
+    def encode(self, x):
         B, T = x.shape
-        device = x.device
-        pos = torch.arange(T, device=device).unsqueeze(0).expand(B, -1)
-        h = self.token_emb(x) + self.pos_emb(pos)
-        enc_out = self.encoder(h)
-        target_len = max(1, int(T * self.compression_ratio))
-        h_t = enc_out.transpose(1, 2)
-        h_pooled = F.adaptive_avg_pool1d(h_t, target_len).transpose(1, 2)
-        latent = self.compress_proj(h_pooled)
-        dec_pos = torch.arange(target_len, device=device).unsqueeze(0).expand(B, -1)
-        dec_in = self.pos_emb(dec_pos)
-        dec_out = self.decoder(dec_in, latent)
-        return self.output_head(dec_out)
+        positions = torch.arange(T, device=x.device).unsqueeze(0).expand(B, -1)
+        h = self.token_emb(x) + self.pos_emb(positions)
+        h = self.encoder(h)
+        target_size = max(1, int(T * self.compression_ratio))
+        h = h.transpose(1, 2)
+        h = F.adaptive_avg_pool1d(h, target_size)
+        h = h.transpose(1, 2)
+        h = self.compress_proj(h)
+        return h
+
+    def decode(self, latent, target_len):
+        B, L, C = latent.shape
+        positions = torch.arange(target_len, device=latent.device).unsqueeze(0).expand(B, -1)
+        target_emb = self.pos_emb(positions)
+        h = self.decoder(target_emb, latent)
+        return self.output_head(h)
+
+    def forward(self, x):
+        original_len = x.shape[1]
+        latent = self.encode(x)
+        logits = self.decode(latent, original_len)
+        return logits, latent, original_len
 
 
 # ==========================================
@@ -192,7 +203,7 @@ def run_benchmark(model_name, adapter_path, device='cuda'):
     total_matches = 0
 
     for category, prompt in TEST_PROMPTS:
-        print(f"\n{'─' * 50}")
+        print(f"\n{'-' * 50}")
         print(f"[{category}] \"{prompt}\"")
 
         # 1. Raw model
@@ -209,27 +220,29 @@ def run_benchmark(model_name, adapter_path, device='cuda'):
         reconstructed_text = ""
 
         if len(tokens) <= 1024:
-            # Compress
+            # Compress + reconstruct
             t0 = time.time()
             with torch.no_grad():
                 x = torch.tensor([tokens], dtype=torch.long, device=device)
-                logits = adapter(x)
-                first_token = logits[0, 0, :].argmax().item()
+                logits, latent, orig_len = adapter(x)
+                # Teacher-forced: logits[i] predicts token[i+1]
+                # So reconstructed = [tokens[0]] + logits[0, :T-1].argmax()
+                first_token = [tokens[0]]
                 predicted = logits[0, :len(tokens)-1, :].argmax(dim=-1).tolist()
-                reconstructed = bytes([first_token] + predicted[:len(tokens)-1])
-                latent_size = int(len(tokens) * config['compression_ratio'])
+                reconstructed = bytes(first_token + predicted[:len(tokens)-1])
+                latent_size = latent.shape[1]
             compress_time = (time.time() - t0) * 1000
 
-            # Decompressed prompt → model
+            # Reconstruction match check
+            match = reconstructed == bytes(tokens)
+            total_matches += int(match)
+
+            # Send reconstructed text to model for quality comparison
             reconstructed_text = reconstructed.decode('utf-8', errors='replace')
-            print(f"  LAIT → model...", end=" ", flush=True)
+            print(f"  LAIT -> model...", end=" ", flush=True)
             lait = call_ollama(model_name, reconstructed_text)
             lait_time = lait.get("wall_time_ms", 0) + compress_time
             total_lait_time += lait_time
-
-            # Compare
-            match = reconstructed == tokens[:len(reconstructed)]
-            total_matches += int(match)
             print(f"{lait_time:.0f}ms | compress={compress_time:.1f}ms | latent={latent_size}B | {'MATCH' if match else 'MISMATCH'}")
             print(f"  Response: {lait.get('response', '')[:120]}...")
         else:
