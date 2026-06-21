@@ -1,0 +1,287 @@
+{
+  "timestamp": "2026-06-20 18:53:47",
+  "adapter_config": {
+    "d_model": 128,
+    "n_encoder_layers": 4,
+    "n_decoder_layers": 4,
+    "n_heads": 4,
+    "compression_ratio": 1.0,
+    "ff_mult": 4,
+    "dropout": 0.0,
+    "vocab_size": 256,
+    "max_seq_len": 512,
+    "activation": "gelu"
+  },
+  "checkpoint_info": {
+    "accuracy": "unknown",
+    "compression": "unknown"
+  },
+  "tests": {
+    "tiny": [
+      {
+        "original": "Hello",
+        "reconstructed": "Hello",
+        "match": true,
+        "original_tokens": 5
+      },
+      {
+        "original": "Yes",
+        "reconstructed": "Yes",
+        "match": true,
+        "original_tokens": 3
+      },
+      {
+        "original": "No",
+        "reconstructed": "No",
+        "match": true,
+        "original_tokens": 2
+      },
+      {
+        "original": "OK",
+        "reconstructed": "OK",
+        "match": true,
+        "original_tokens": 2
+      },
+      {
+        "original": "Test",
+        "reconstructed": "Test",
+        "match": true,
+        "original_tokens": 4
+      }
+    ],
+    "short": [
+      {
+        "original": "Hello world!",
+        "reconstructed": "Hello world!",
+        "match": true,
+        "original_tokens": 12
+      },
+      {
+        "original": "The quick brown fox.",
+        "reconstructed": "The quick brown fox.",
+        "match": true,
+        "original_tokens": 20
+      },
+      {
+        "original": "Machine learning is great.",
+        "reconstructed": "Machine learning is great.",
+        "match": true,
+        "original_tokens": 26
+      },
+      {
+        "original": "Python is a programming language.",
+        "reconstructed": "Python is a programming language.",
+        "match": true,
+        "original_tokens": 33
+      },
+      {
+        "original": "The weather is nice today.",
+        "reconstructed": "The weather is nice today.",
+        "match": true,
+        "original_tokens": 26
+      }
+    ],
+    "medium": [
+      {
+        "original": "The quick brown fox jumps over the lazy dog.",
+        "reconstructed": "The quick brown fox jumps over the lazy dog.",
+        "match": true,
+        "original_tokens": 44
+      },
+      {
+        "original": "Machine learning is transforming technology worldwide.",
+        "reconstructed": "Machine learning is transforming technology worldwide.",
+        "match": true,
+        "original_tokens": 54
+      },
+      {
+        "original": "Neural networks can learn complex patterns from data.",
+        "reconstructed": "Neural networks can learn complex patterns from data.",
+        "match": true,
+        "original_tokens": 53
+      },
+      {
+        "original": "The adapter compresses text into latent representations.",
+        "reconstructed": "The adapter compresses text into latent representations.",
+        "match": true,
+        "original_tokens": 56
+      },
+      {
+        "original": "Genetic evolution finds optimal architecture configurations.",
+        "reconstructed": "Genetic evolution finds optimal architecture configurations.",
+        "match": true,
+        "original_tokens": 60
+      }
+    ],
+    "long": [
+      {
+        "original": "The quick brown fox jumps over the lazy dog. This is a longer sentence that tests the adapter ability to reconstruct arbitrary text accurately.",
+        "reconstructed": "The quick brown fox jumps over the lazy dog. This is a longer sentence that tests the adapter ability to reconstruct arbitrary text accurately.",
+        "match": true,
+        "original_tokens": 143
+      },
+      {
+        "original": "Machine learning is transforming technology worldwide. Neural networks can learn complex patterns from data and make predictions about future events.",
+        "reconstructed": "Machine learning is transforming technology worldwide. Neural networks can learn complex patterns from data and make predictions about future events.",
+        "match": true,
+        "original_tokens": 149
+      },
+      {
+        "original": "The adapter compresses text into latent representations using a transformer encoder-decoder architecture with adaptive pooling bottleneck.",
+        "reconstructed": "The adapter compresses text into latent representations using a transformer encoder-decoder architecture with adaptice pooling bottleneck.",
+        "match": false,
+        "original_tokens": 138
+      },
+      {
+        "original": "Genetic evolution explores a 120-trait genome to find optimal architecture configurations for neural text compression with 100% reconstruction.",
+        "reconstructed": "Genetic evolution explores a 120-trait genome to find optimal architecture configurations for neural text compression with 100% reconstruction.",
+        "match": true,
+        "original_tokens": 143
+      },
+      {
+        "original": "Los Angeles (US), Jun 20 (IANS) A massive wildfire has broken out in the hills above Los Angeles, forcing thousands of residents to evacuate their homes.",
+        "reconstructed": "Los Angeles (US), Jun 20 (IANS) A massive wildfire has broken out in the hills above Los Angeles, forcing thousands of residents to evacuate their homes.",
+        "match": true,
+        "original_tokens": 153
+      }
+    ],
+    "technical": [
+      {
+        "original": "def train_model(config, data): model = LAITAdapter(config); optimizer = AdamW(model.parameters()); for epoch in range(100): loss = train_epoch(model, data); return model",
+        "reconstructed": "def train_model(config, data): model = LAITAdapter(config); optimizer = AdamW(model.parameters()); for epoch in rang](100): loss = train_epoch(model, data); reourn model",
+        "match": false,
+        "original_tokens": 169
+      },
+      {
+        "original": "{\"name\": \"lait-adapter\", \"version\": \"2.0\", \"compression_ratio\": 0.5, \"d_model\": 128, \"n_layers\": 4, \"accuracy\": 1.0}",
+        "reconstructed": "{\"name\": \"lait-adapter\", \"version\": \"2.0\", \"compression_ratio\": 0.5, \"d_model\": 128, \"n_layers\": 4, \"accuracy\": 1.0}",
+        "match": true,
+        "original_tokens": 116
+      },
+      {
+        "original": "SELECT * FROM users WHERE age > 25 AND city = \"Los Angeles\" ORDER BY name ASC LIMIT 100",
+        "reconstructed": "SELECT * FROM users WHERE age > 25 AND city = \"Los Angeles\" ORDER BY name ASC LIMIT 100",
+        "match": true,
+        "original_tokens": 87
+      },
+      {
+        "original": "git commit -m \"feat: add GPU training support with CUDA 12.8 for RTX 5060\"",
+        "reconstructed": "git commit -m \"feat: add GPU training support with CUDA 12.8 for RTX 5060\"",
+        "match": true,
+        "original_tokens": 74
+      },
+      {
+        "original": "curl -X POST http://localhost:8001/compress -H \"Content-Type: application/json\" -d '{\"text\": \"Hello world!\"}'",
+        "reconstructed": "curl -X POST http://localhost:8001/compress -H \"Content-Type: application/json\" -d '{\"text\": \"Hello world!\"}'",
+        "match": true,
+        "original_tokens": 109
+      }
+    ],
+    "random": [
+      {
+        "original": "1GR_lZQitI\\k(x#91HeA/CY;z2=(r5'Q%%.gY2i1Xf:'oa6KmAY58%KModEZZLDzB!~O2,tf}Dex",
+        "reconstructed": "1GR_lZQitI\\k(x#91HeA/CY;z2=(r5'Q%%.gY2i1Xf:'oa6KmAY58%KModEZZLDzB!~O2,tf}Dex",
+        "match": true,
+        "original_tokens": 76
+      },
+      {
+        "original": "khZETPka#z.cUHAz>rqr{_;zmlzV!SXX(.z|eo$22LNTF%*Ep07t-oy\"~UEPkqxE({5b*/^+@Z+gmO1W$G",
+        "reconstructed": "khZETPka#z.cUHAz>rqr{_;zmlzV!SXX(.z|eo$22LNTF%*Ep07t-oy\"~UEPkqxE({5b*/^+@Z+gmO1W$G",
+        "match": true,
+        "original_tokens": 82
+      },
+      {
+        "original": "ek15pdi.yH5=&Ii.y_D$n/%qs\\/k@/~w?@&q/>7%gBm)Cn7H?Y]Zc[<6pc.Wdo|,>",
+        "reconstructed": "ek15pdi.yH5=&Ii.y_D$n/%qs\\/k@/~w?@&q/>7%gBm)Cn7H?Y]Zc[<6pc.Wdo|,>",
+        "match": true,
+        "original_tokens": 65
+      },
+      {
+        "original": "NW>u]%!E9nXd/|{'yttE_k+|KtrISr~~'@G !fHXifj\"S9)w)Th!xg|s%!-3h6Ra)T\">RjEdlUGL<}YBz_JtD(d~*&bdUYN%FMMcdbQ)B@t)I__Z ?ch\"[=Ih;8-=kG(Ncio6+{45tB=\"(eaIltRpX.7d vq<Co*D?hnYC[mbOGsTf)9n7]r&Ab>FU",
+        "reconstructed": "NW>u]%!E9nXd/|{'yttE_k+|KtrISr~~'@G !fHXifj\"S9)w)Th!xg|s%!-3h6Ra)T\">RjEdlUGL<}YBz_JtD(d~*&bdUYN%FMMcdbQ)B@t)I__Z ?ch0[=Ih;8-=kG(Ncio6+{45tB=\"(eaIltRpX.7d vq<CotD?hnYC[mbOGsTf)9n7)B&Ab>FU",
+        "match": false,
+        "original_tokens": 186
+      },
+      {
+        "original": "\"gD7$-53|B?gd7p#~0Ez(fMy_ODW\"iSD(1k2V_1idmvH(zzf2!LBx2gK&T3:NXy2\"CG?tAgtOIB8$d3]/",
+        "reconstructed": "\"gD7$-53|B?gd7p#~0Ez(fMy_ODW\"iSD(1k2V_1idmvH(zzf2!LBx2gK&T3:NXy2\"CG?tAgtOIB8$d3]/",
+        "match": true,
+        "original_tokens": 81
+      },
+      {
+        "original": "^5N#W<;^7r||4Lz1\"jJ-UXIKoehcZ\"kH='-LrwjW%1/PYef@MA=zH/#j`G]b_QS*tZoqc~9AUX0$Hw&&muEBo?k\\Aj5/EOp=Y@sRM;5\\aLTtEn-",
+        "reconstructed": "^5N#W<;^7r||4Lz1\"jJ-UXIKoehcZ\"kH='-LrwjW%1/PYef@MA=zH/#j`G]b_QS*tZoqc~9AUX0$Hw&&muEBo?k\\Aj5/EOp=Y@sRM;5\\aLTtEn-",
+        "match": true,
+        "original_tokens": 111
+      },
+      {
+        "original": "n+L{$g7:2?y[Ty f3OL;CtTf,>|]j\\H!Z)s^wub2C@VO7CHK/9^e\\[B<ZPvvaxsYZ1:-k_wZ\\5SkL]C{he?~q8o1mwArb=j<{%O[{10`%O,~]X{ u{.F[ij9_|.I+25zLHdVX/B=C(c)hwfO/]-n2Ht5+n9!J*&yg2(,XK/vNoZ`pJ]",
+        "reconstructed": "n+L{$g7:2?y[Ty f3OL;CtTf,>|]j\\H!Z)s^wub2C@VO7CHK/9^e\\[B<ZPvvaxsYZ1:-k_wZ\\5SkL]C{he?~q8o1mwArb=j<{%O[{10`%O,~]X{ u{.F&ij9_|.I+25zLHdVX/B=C(c)hwfO/]-n2Ht5+n9!J*&bg2(,XK/vNoZ`pJ]",
+        "match": false,
+        "original_tokens": 175
+      },
+      {
+        "original": "phz2)7*h[mbLp{\"x +gz2q}?B&\"[bqp27N0),?pG(#.+\\Y=haQ2&o\\d>`>An_bl[%yLX[.nH>kO3T|r/.&QSB&v}A>A PMjiF{`w`q![S28uV=)eep>26Rh!ryB`ZP&O0",
+        "reconstructed": "phz2)7*h[mbLp{\"x +gz2q}?B&\"[bqp27N0),?pG(#.+\\Y=haQ2&o\\d>`>An_bl[%yLX[.nH>kO3T|r/.&QSB&v}A>A PMjiF{`w`q![S28uV=)eep>2&Rh!ryB`ZP&O0",
+        "match": false,
+        "original_tokens": 129
+      },
+      {
+        "original": "TGT:8C\\*I`Y?*q\"(P(~lPDKG6IHN*JC={z*rA\"oPX=\\X<GS|;(XixcN/<umqiALgk7ykf,5CV|u}pCCis,.=v3(9r",
+        "reconstructed": "TGT:8C\\*I`Y?*q\"(P(~lPDKG6IHN*JC={z*rA\"oPX=\\X<GS|;(XixcN/<umqiALgk7ykf,5CV|u}pCCis,.=v3(9r",
+        "match": true,
+        "original_tokens": 89
+      },
+      {
+        "original": ":z/pXU$mcMfHPtu.WY^6}<CH/X3\\p;h\\Q*{BPDrA&UGt4&[$tZ6fEHn+9",
+        "reconstructed": ":z/pXU$mcMfHPtu.WY^6}<CH/X3\\p;h\\Q*{BPDrA&UGt4&[$tZ6fEHn+9",
+        "match": true,
+        "original_tokens": 57
+      }
+    ]
+  },
+  "summary": {
+    "total_tests": 35,
+    "total_passed": 30,
+    "accuracy": 0.8571,
+    "all_passed": false
+  },
+  "compression_tests": {
+    "1.0": {
+      "text": "The quick brown fox jumps over the lazy dog. Machine learning is transforming technology.",
+      "match": false,
+      "latent_size": 89,
+      "actual_ratio": 1.0,
+      "compression": 1.0
+    },
+    "0.5": {
+      "text": "The quick brown fox jumps over the lazy dog. Machine learning is transforming technology.",
+      "match": false,
+      "latent_size": 44,
+      "actual_ratio": 2.02,
+      "compression": 0.5
+    },
+    "0.25": {
+      "text": "The quick brown fox jumps over the lazy dog. Machine learning is transforming technology.",
+      "match": false,
+      "latent_size": 22,
+      "actual_ratio": 4.05,
+      "compression": 0.2
+    },
+    "0.125": {
+      "text": "The quick brown fox jumps over the lazy dog. Machine learning is transforming technology.",
+      "match": false,
+      "latent_size": 11,
+      "actual_ratio": 8.09,
+      "compression": 0.1
+    },
+    "0.0625": {
+      "text": "The quick brown fox jumps over the lazy dog. Machine learning is transforming technology.",
+      "match": false,
+      "latent_size": 5,
+      "actual_ratio": 17.8,
+      "compression": 0.1
+    }
+  },
+  "verification_hash": "ed79be14da54360ac0529c5921e876ae8593c447b658c00530ac2090c2a3fb2f"
+}

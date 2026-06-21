@@ -1,0 +1,293 @@
+{
+  "_comment": "LAIT Training Configuration - All available parameters for iteration",
+  "_explanation": {
+    "genome_definition": "The LAIT genome is the LAITConfig dataclass with 8 mutable parameters",
+    "evaluation_vs_training": "Evaluation = quick forward pass with random weights (seconds). Training = actual backpropagation with real data (minutes to hours).",
+    "current_status": "We have been doing EVALUATION only. No actual training has occurred yet."
+  },
+
+  "genome": {
+    "description": "The LAIT genome defines the complete architecture configuration",
+    "class_name": "LAITConfig",
+    "source_file": "lait_v1.py:781-852",
+    "parameters": {
+      "core_dimensions": {
+        "vocab_size": {
+          "type": "int",
+          "default": 50257,
+          "range": [1000, 100000],
+          "mutable": false,
+          "description": "Vocabulary size - usually fixed to match tokenizer"
+        },
+        "d_model": {
+          "type": "int",
+          "default": 256,
+          "range": [64, 1024],
+          "step": 64,
+          "mutable": false,
+          "description": "Model dimension - affects capacity and memory"
+        },
+        "num_heads": {
+          "type": "int",
+          "default": 4,
+          "range": [1, 16],
+          "mutable": false,
+          "description": "Number of attention heads"
+        }
+      },
+      "architecture_depth": {
+        "n_initial_encoder_layers": {
+          "type": "int",
+          "default": 2,
+          "range": [1, 4],
+          "mutable": true,
+          "description": "Number of transformer blocks in initial encoder"
+        },
+        "n_compressor_layers": {
+          "type": "int",
+          "default": 1,
+          "range": [1, 4],
+          "mutable": true,
+          "description": "Number of compression/bottleneck layers"
+        },
+        "n_decoder_layers": {
+          "type": "int",
+          "default": 2,
+          "range": [1, 4],
+          "mutable": true,
+          "description": "Number of causal transformer blocks in decoder"
+        }
+      },
+      "compression_parameters": {
+        "compression_ratio": {
+          "type": "float",
+          "default": 0.10,
+          "range": [0.01, 0.50],
+          "step": 0.01,
+          "mutable": true,
+          "description": "Target compression ratio (lower = more compression)"
+        },
+        "min_latents": {
+          "type": "int",
+          "default": 32,
+          "range": [8, 256],
+          "mutable": true,
+          "description": "Minimum number of latent vectors"
+        },
+        "max_latents": {
+          "type": "int",
+          "default": 2048,
+          "range": [128, 4096],
+          "mutable": true,
+          "description": "Maximum number of latent vectors"
+        },
+        "dynamic_resizing": {
+          "type": "bool",
+          "default": true,
+          "options": [true, false],
+          "mutable": true,
+          "description": "Allow dynamic adjustment of latent size"
+        }
+      },
+      "bottleneck": {
+        "bottleneck_type": {
+          "type": "choice",
+          "default": "cross_attn",
+          "options": ["cross_attn", "pooling", "mlp", "hybrid"],
+          "mutable": true,
+          "description": "Type of bottleneck compression mechanism"
+        }
+      }
+    }
+  },
+
+  "search_space": {
+    "discrete_params": {
+      "n_initial_encoder_layers": [1, 2, 3, 4],
+      "n_compressor_layers": [1, 2, 3, 4],
+      "n_decoder_layers": [1, 2, 3, 4],
+      "bottleneck_type": ["cross_attn", "pooling", "mlp", "hybrid"],
+      "dynamic_resizing": [true, false]
+    },
+    "continuous_params": {
+      "compression_ratio": [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.10, 0.12, 0.15, 0.18, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50],
+      "min_latents": [8, 16, 32, 64, 128, 256],
+      "max_latents": [128, 256, 512, 1024, 2048, 4096]
+    },
+    "total_discrete_combinations": 512,
+    "total_sampled_combinations": 368640,
+    "exhaustive_search_sampled": 1000
+  },
+
+  "optimizer_settings": {
+    "time_limit_seconds": {
+      "default": 180,
+      "range": [60, 3600],
+      "description": "Total wall-clock time for evolution"
+    },
+    "population_size": {
+      "default": 10,
+      "range": [4, 32],
+      "description": "Number of configs per generation"
+    },
+    "elite_count": {
+      "default": 2,
+      "range": [1, 8],
+      "description": "Top configs preserved unchanged"
+    },
+    "mutation_rate": {
+      "default": 0.35,
+      "range": [0.1, 0.8],
+      "description": "Probability of mutating each field"
+    },
+    "batch_size": {
+      "default": 2,
+      "range": [1, 8],
+      "description": "Batch size for evaluation"
+    },
+    "seq_len": {
+      "default": 512,
+      "range": [64, 2048],
+      "description": "Sequence length for evaluation"
+    },
+    "eval_batches": {
+      "default": 3,
+      "range": [1, 10],
+      "description": "Number of forward passes to average"
+    },
+    "compression_chain_length": {
+      "default": 1,
+      "range": [1, 4],
+      "description": "How many times to re-compress"
+    },
+    "use_base_tokenizer": {
+      "default": false,
+      "description": "Use character-level tokenizer vs GPT2"
+    },
+    "use_historical_winners": {
+      "default": true,
+      "description": "Seed from previous best configs"
+    },
+    "enable_lineage_tracking": {
+      "default": true,
+      "description": "Track parent-child relationships"
+    },
+    "enable_blacklist": {
+      "default": true,
+      "description": "Skip configs that failed 3+ times"
+    }
+  },
+
+  "fitness_function": {
+    "weights": {
+      "reconstruction_accuracy": 0.40,
+      "memory_savings": 0.30,
+      "compression_ratio": 0.15,
+      "speed": 0.15,
+      "innovation_bonus": 0.10
+    },
+    "proxy_for_untrained": {
+      "description": "When recon_accuracy < 0.01, use architectural proxy",
+      "components": {
+        "compression_ratio_proxy": "min(compression_ratio / 10.0, 1.0) * 0.2",
+        "speed_proxy": "(1.0 / max(forward_ms / 100.0, 1)) * 0.1",
+        "memory_proxy": "(memory_savings / 100.0) * 0.3",
+        "hybrid_bottleneck_bonus": "0.2 if bottleneck_type == 'hybrid' else 0",
+        "depth_bonus": "0.2 if n_compressor_layers > 1 else 0"
+      }
+    },
+    "chain_bonus": "1.0 + (compression_chain_length - 1) * 0.1"
+  },
+
+  "evaluation_vs_training": {
+    "evaluation": {
+      "what": "Quick forward pass with random weights",
+      "time_per_config": "0.5-2 seconds",
+      "total_time_1000_configs": "10-30 minutes",
+      "measures": ["compression_ratio", "latent_size", "forward_ms", "memory_savings"],
+      "does_not_measure": ["actual_reconstruction_quality", "convergence", "generalization"],
+      "status": "What we have been doing"
+    },
+    "training": {
+      "what": "Actual backpropagation with real data",
+      "time_per_config": "1-10 minutes",
+      "total_time_100_configs": "2-16 hours",
+      "measures": ["actual_recon_accuracy", "loss_convergence", "validation_metrics"],
+      "requires": ["training_data", "loss_function", "optimizer", "learning_rate", "epochs"],
+      "status": "NOT YET IMPLEMENTED"
+    }
+  },
+
+  "bottleneck_types": {
+    "cross_attn": {
+      "description": "Cross-attention bottleneck - queries attend to learned latent memory",
+      "parameters": ["n_heads", "d_model"],
+      "pros": ["flexible", "captures long-range dependencies"],
+      "cons": ["more parameters", "slower inference"]
+    },
+    "pooling": {
+      "description": "Learned pooling bottleneck - reduces sequence via learned projections",
+      "parameters": ["pool_size"],
+      "pros": ["fast", "simple"],
+      "cons": ["fixed compression", "less flexible"]
+    },
+    "mlp": {
+      "description": "MLP bottleneck - feeds through feedforward network to reduce dimensions",
+      "parameters": ["hidden_dim"],
+      "pros": ["simple", "fast inference"],
+      "cons": ["fixed dimensionality", "no attention"]
+    },
+    "hybrid": {
+      "description": "Hybrid bottleneck - combines pooling + cross-attention",
+      "parameters": ["pool_size", "n_heads"],
+      "pros": ["best of both worlds", "more expressive"],
+      "cons": ["more complex", "harder to train"]
+    }
+  },
+
+  "discovered_top_configs": {
+    "from_exhaustive_search": {
+      "source": "exhaustive_results.json",
+      "total_evaluated": 2061,
+      "top_10": [
+        {"rank": 1, "name": "config_681", "fitness": 419.5, "bottleneck": "mlp", "layers": "1-4-2", "compression_ratio": 0.08, "latent_size": 8},
+        {"rank": 2, "name": "config_594", "fitness": 378.7, "bottleneck": "pooling", "layers": "1-1-1", "compression_ratio": 0.09, "latent_size": 16},
+        {"rank": 3, "name": "config_418", "fitness": 369.9, "bottleneck": "hybrid", "layers": "1-1-1", "compression_ratio": 0.20, "latent_size": 8},
+        {"rank": 4, "name": "config_767", "fitness": 351.4, "bottleneck": "hybrid", "layers": "1-1-1", "compression_ratio": 0.09, "latent_size": 8},
+        {"rank": 5, "name": "config_876", "fitness": 346.5, "bottleneck": "hybrid", "layers": "1-2-1", "compression_ratio": 0.04, "latent_size": 8},
+        {"rank": 6, "name": "config_547", "fitness": 342.6, "bottleneck": "cross_attn", "layers": "1-4-2", "compression_ratio": 0.08, "latent_size": 8},
+        {"rank": 7, "name": "config_317", "fitness": 342.0, "bottleneck": "hybrid", "layers": "1-3-1", "compression_ratio": 0.18, "latent_size": 8},
+        {"rank": 8, "name": "config_195", "fitness": 340.6, "bottleneck": "mlp", "layers": "1-4-3", "compression_ratio": 0.12, "latent_size": 8},
+        {"rank": 9, "name": "config_83", "fitness": 338.8, "bottleneck": "hybrid", "layers": "1-1-4", "compression_ratio": 0.20, "latent_size": 8},
+        {"rank": 10, "name": "config_28", "fitness": 337.1, "bottleneck": "pooling", "layers": "1-1-4", "compression_ratio": 0.01, "latent_size": 8}
+      ],
+      "note": "These are from ARCHITECTURE EVALUATION only - no actual training occurred"
+    },
+    "from_evolutionary_runs": {
+      "source": "lait_evolution.db",
+      "total_evaluations": 1061,
+      "unique_configs": 480,
+      "top_10": [
+        {"rank": 1, "name": "hist_cx_hist_hist_g1", "fitness": 119.7, "bottleneck": "hybrid", "layers": "4-2-1", "compression_ratio": 64.0, "latent_size": 8},
+        {"rank": 2, "name": "mut_cmm_g1", "fitness": 119.5, "bottleneck": "hybrid", "layers": "4-3-1", "compression_ratio": 64.0, "latent_size": 8},
+        {"rank": 3, "name": "leap_hist_cx_", "fitness": 119.5, "bottleneck": "hybrid", "layers": "4-4-1", "compression_ratio": 64.0, "latent_size": 8},
+        {"rank": 4, "name": "leap_cx_hist_", "fitness": 119.0, "bottleneck": "hybrid", "layers": "4-2-4", "compression_ratio": 64.0, "latent_size": 8},
+        {"rank": 5, "name": "mut_mn_g1", "fitness": 111.1, "bottleneck": "hybrid", "layers": "4-3-1", "compression_ratio": 51.2, "latent_size": 10},
+        {"rank": 6, "name": "mut_cmm_g1", "fitness": 110.9, "bottleneck": "cross_attn", "layers": "4-4-1", "compression_ratio": 64.0, "latent_size": 8},
+        {"rank": 7, "name": "mut_cmn_g1", "fitness": 110.9, "bottleneck": "cross_attn", "layers": "4-2-1", "compression_ratio": 64.0, "latent_size": 8},
+        {"rank": 8, "name": "mut_mmn_g3", "fitness": 110.6, "bottleneck": "hybrid", "layers": "4-2-1", "compression_ratio": 51.2, "latent_size": 10},
+        {"rank": 9, "name": "mut_mmn_g3", "fitness": 110.4, "bottleneck": "hybrid", "layers": "4-1-1", "compression_ratio": 64.0, "latent_size": 8},
+        {"rank": 10, "name": "innov_layer_scaling_g4", "fitness": 102.8, "bottleneck": "hybrid", "layers": "2-2-1", "compression_ratio": 64.0, "latent_size": 8}
+      ],
+      "note": "These configs were also NOT trained - only evaluated with proxy fitness"
+    }
+  },
+
+  "next_steps": {
+    "1_create_training_script": "Implement actual training with backpropagation, loss function, optimizer",
+    "2_define_loss_function": "Reconstruction loss (cross-entropy or MSE between input and reconstructed output)",
+    "3_add_training_loop": "Epoch-based training with gradient updates",
+    "4_validate_with_real_data": "Train on actual text data, measure reconstruction accuracy",
+    "5_compare_trained_vs_untrained": "Show that training improves reconstruction quality"
+  }
+}

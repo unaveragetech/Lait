@@ -1,0 +1,206 @@
+{
+  "_comment": "LAIT Genome Traits - 100 Traits for Evolutionary Search",
+  "_version": "2.0",
+  "_description": "Complete search space with 100 evolvable traits for LAIT architecture evolution.",
+
+  "genome_traits": {
+    "architecture_depth": {
+      "n_initial_encoder_layers": {"type": "int", "range": [1, 8], "default": 2, "step": 1, "description": "Initial encoder transformer blocks", "group": "depth"},
+      "n_compressor_layers": {"type": "int", "range": [1, 8], "default": 1, "step": 1, "description": "Bottleneck/compression layers", "group": "depth"},
+      "n_decoder_layers": {"type": "int", "range": [1, 8], "default": 2, "step": 1, "description": "Decoder causal transformer blocks", "group": "depth"},
+      "n_encoder_heads": {"type": "int", "range": [1, 16], "default": 4, "step": 1, "description": "Encoder attention heads", "group": "depth"},
+      "n_decoder_heads": {"type": "int", "range": [1, 16], "default": 4, "step": 1, "description": "Decoder attention heads", "group": "depth"},
+      "encoder_ff_mult": {"type": "int", "range": [1, 8], "default": 4, "step": 1, "description": "Encoder feed-forward multiplier", "group": "depth"},
+      "decoder_ff_mult": {"type": "int", "range": [1, 8], "default": 4, "step": 1, "description": "Decoder feed-forward multiplier", "group": "depth"},
+      "n_latent_layers": {"type": "int", "range": [1, 4], "default": 1, "step": 1, "description": "Latent projection layers", "group": "depth"}
+    },
+
+    "model_dimensions": {
+      "d_model": {"type": "int", "range": [64, 1024], "default": 256, "step": 64, "description": "Model hidden dimension", "group": "dimensions"},
+      "d_encoder": {"type": "int", "range": [64, 1024], "default": 256, "step": 64, "description": "Encoder dimension", "group": "dimensions"},
+      "d_decoder": {"type": "int", "range": [64, 1024], "default": 256, "step": 64, "description": "Decoder dimension", "group": "dimensions"},
+      "d_latent": {"type": "int", "range": [32, 512], "default": 128, "step": 32, "description": "Latent space dimension", "group": "dimensions"},
+      "d_bottleneck": {"type": "int", "range": [32, 512], "default": 128, "step": 32, "description": "Bottleneck dimension", "group": "dimensions"},
+      "vocab_size": {"type": "int", "range": [1000, 100000], "default": 50257, "step": 1000, "description": "Vocabulary size", "group": "dimensions", "fixed": true},
+      "max_seq_len": {"type": "int", "range": [128, 4096], "default": 512, "step": 128, "description": "Maximum sequence length", "group": "dimensions"}
+    },
+
+    "compression_parameters": {
+      "compression_ratio": {"type": "float", "range": [0.01, 0.50], "default": 0.10, "step": 0.01, "description": "Target compression ratio", "group": "compression"},
+      "min_latents": {"type": "int", "range": [4, 512], "default": 32, "step": 4, "description": "Minimum latent vectors", "group": "compression"},
+      "max_latents": {"type": "int", "range": [64, 8192], "default": 2048, "step": 64, "description": "Maximum latent vectors", "group": "compression"},
+      "dynamic_resizing": {"type": "bool", "options": [true, false], "default": true, "description": "Dynamic latent sizing", "group": "compression"},
+      "compression_schedule": {"type": "choice", "options": ["fixed", "linear", "cosine", "exponential"], "default": "fixed", "description": "Compression schedule type", "group": "compression"},
+      "adaptive_compression": {"type": "bool", "options": [true, false], "default": false, "description": "Adaptive compression based on input", "group": "compression"},
+      "latent_dropout": {"type": "float", "range": [0.0, 0.5], "default": 0.1, "step": 0.05, "description": "Latent space dropout", "group": "compression"},
+      "quantize_latents": {"type": "bool", "options": [true, false], "default": false, "description": "Quantize latent representations", "group": "compression"},
+      "latent_bits": {"type": "int", "range": [4, 16], "default": 8, "step": 2, "description": "Bits for quantization", "group": "compression"},
+      "hierarchical_latents": {"type": "bool", "options": [true, false], "default": false, "description": "Hierarchical latent structure", "group": "compression"},
+      "n_hierarchical_levels": {"type": "int", "range": [2, 4], "default": 2, "step": 1, "description": "Number of hierarchical levels", "group": "compression"}
+    },
+
+    "bottleneck": {
+      "bottleneck_type": {"type": "choice", "options": ["cross_attn", "pooling", "mlp", "hybrid", "conv", "rnn", "linear", "attention_pool"], "default": "cross_attn", "description": "Bottleneck mechanism type", "group": "bottleneck"},
+      "pool_size": {"type": "int", "range": [2, 16], "default": 4, "step": 2, "description": "Pool size for pooling", "group": "bottleneck"},
+      "mlp_hidden_mult": {"type": "int", "range": [1, 8], "default": 2, "step": 1, "description": "MLP hidden multiplier", "group": "bottleneck"},
+      "bottleneck_activation": {"type": "choice", "options": ["relu", "gelu", "silu", "tanh", "sigmoid"], "default": "gelu", "description": "Bottleneck activation function", "group": "bottleneck"},
+      "bottleneck_norm": {"type": "choice", "options": ["layer", "rms", "group", "none"], "default": "layer", "description": "Bottleneck normalization", "group": "bottleneck"},
+      "bottleneck_residual": {"type": "bool", "options": [true, false], "default": true, "description": "Residual connections in bottleneck", "group": "bottleneck"},
+      "conv_kernel_size": {"type": "int", "range": [3, 15], "default": 5, "step": 2, "description": "Convolution kernel size", "group": "bottleneck"},
+      "conv_channels": {"type": "int", "range": [64, 512], "default": 128, "step": 64, "description": "Convolution channels", "group": "bottleneck"},
+      "rnn_hidden_size": {"type": "int", "range": [64, 512], "default": 128, "step": 64, "description": "RNN hidden size", "group": "bottleneck"},
+      "rnn_num_layers": {"type": "int", "range": [1, 4], "default": 1, "step": 1, "description": "RNN layers", "group": "bottleneck"},
+      "rnn_bidirectional": {"type": "bool", "options": [true, false], "default": true, "description": "Bidirectional RNN", "group": "bottleneck"},
+      "attention_pool_heads": {"type": "int", "range": [1, 8], "default": 2, "step": 1, "description": "Attention pooling heads", "group": "bottleneck"}
+    },
+
+    "attention_parameters": {
+      "attn_dropout": {"type": "float", "range": [0.0, 0.5], "default": 0.1, "step": 0.05, "description": "Attention dropout", "group": "attention"},
+      "ff_dropout": {"type": "float", "range": [0.0, 0.5], "default": 0.1, "step": 0.05, "description": "Feed-forward dropout", "group": "attention"},
+      "use_rotary_emb": {"type": "bool", "options": [true, false], "default": true, "description": "Rotary positional embeddings", "group": "attention"},
+      "use_alibi": {"type": "bool", "options": [true, false], "default": false, "description": "ALiBi positional encoding", "group": "attention"},
+      "use_sinusoidal": {"type": "bool", "options": [true, false], "default": false, "description": "Sinusoidal positional encoding", "group": "attention"},
+      "use_learned_pos": {"type": "bool", "options": [true, false], "default": true, "description": "Learned positional embeddings", "group": "attention"},
+      "attn_type": {"type": "choice", "options": ["standard", "flash", "linear", "sparse"], "default": "standard", "description": "Attention implementation", "group": "attention"},
+      "flash_attention": {"type": "bool", "options": [true, false], "default": true, "description": "Use flash attention", "group": "attention"},
+      "sparse_attention": {"type": "bool", "options": [true, false], "default": false, "description": "Sparse attention pattern", "group": "attention"},
+      "sparse_block_size": {"type": "int", "range": [16, 128], "default": 64, "step": 16, "description": "Sparse attention block size", "group": "attention"},
+      "linear_attention_dim": {"type": "int", "range": [32, 256], "default": 64, "step": 32, "description": "Linear attention feature dim", "group": "attention"},
+      "multiquery_attn": {"type": "bool", "options": [true, false], "default": false, "description": "Multi-query attention", "group": "attention"},
+      "grouped_query_attn": {"type": "bool", "options": [true, false], "default": false, "description": "Grouped-query attention", "group": "attention"},
+      "n_query_groups": {"type": "int", "range": [1, 8], "default": 1, "step": 1, "description": "Number of query groups", "group": "attention"},
+      "cross_attn_layers": {"type": "int", "range": [0, 4], "default": 1, "step": 1, "description": "Cross-attention layers in decoder", "group": "attention"}
+    },
+
+    "training_parameters": {
+      "learning_rate": {"type": "float", "range": [1e-6, 1e-2], "default": 3e-4, "step": 1e-6, "description": "Learning rate", "group": "training"},
+      "weight_decay": {"type": "float", "range": [0.0, 0.1], "default": 0.01, "step": 0.001, "description": "Weight decay", "group": "training"},
+      "warmup_steps": {"type": "int", "range": [0, 1000], "default": 100, "step": 10, "description": "Warmup steps", "group": "training"},
+      "gradient_clip": {"type": "float", "range": [0.1, 10.0], "default": 1.0, "step": 0.1, "description": "Gradient clipping norm", "group": "training"},
+      "scheduler_type": {"type": "choice", "options": ["cosine", "linear", "constant", "step", "exponential"], "default": "cosine", "description": "LR scheduler type", "group": "training"},
+      "scheduler_decay": {"type": "float", "range": [0.8, 0.99], "default": 0.9, "step": 0.01, "description": "Scheduler decay rate", "group": "training"},
+      "scheduler_steps": {"type": "int", "range": [100, 2000], "default": 500, "step": 100, "description": "Scheduler step size", "group": "training"},
+      "min_lr_ratio": {"type": "float", "range": [0.01, 0.2], "default": 0.1, "step": 0.01, "description": "Minimum LR ratio", "group": "training"},
+      "max_grad_norm": {"type": "float", "range": [0.5, 5.0], "default": 1.0, "step": 0.5, "description": "Max gradient norm", "group": "training"},
+      "ema_decay": {"type": "float", "range": [0.9, 0.999], "default": 0.999, "step": 0.001, "description": "EMA decay rate", "group": "training"},
+      "use_ema": {"type": "bool", "options": [true, false], "default": true, "description": "Use exponential moving average", "group": "training"},
+      "label_smoothing": {"type": "float", "range": [0.0, 0.2], "default": 0.0, "step": 0.01, "description": "Label smoothing factor", "group": "training"},
+      "mixup_alpha": {"type": "float", "range": [0.0, 1.0], "default": 0.0, "step": 0.1, "description": "Mixup augmentation alpha", "group": "training"},
+      "cutmix_alpha": {"type": "float", "range": [0.0, 1.0], "default": 0.0, "step": 0.1, "description": "CutMix augmentation alpha", "group": "training"},
+      "focal_loss_gamma": {"type": "float", "range": [0.0, 5.0], "default": 0.0, "step": 0.5, "description": "Focal loss gamma", "group": "training"},
+      "label_grad_accum": {"type": "int", "range": [1, 8], "default": 1, "step": 1, "description": "Gradient accumulation steps", "group": "training"}
+    },
+
+    "loss_parameters": {
+      "recon_loss_weight": {"type": "float", "range": [0.1, 2.0], "default": 1.0, "step": 0.1, "description": "Reconstruction loss weight", "group": "loss"},
+      "kl_loss_weight": {"type": "float", "range": [0.0, 1.0], "default": 0.1, "step": 0.01, "description": "KL divergence weight", "group": "loss"},
+      "compression_loss_weight": {"type": "float", "range": [0.0, 1.0], "default": 0.0, "step": 0.01, "description": "Compression penalty weight", "group": "loss"},
+      "consistency_loss_weight": {"type": "float", "range": [0.0, 1.0], "default": 0.0, "step": 0.01, "description": "Consistency loss weight", "group": "loss"},
+      "contrastive_loss_weight": {"type": "float", "range": [0.0, 1.0], "default": 0.0, "step": 0.01, "description": "Contrastive loss weight", "group": "loss"},
+      "distillation_loss_weight": {"type": "float", "range": [0.0, 1.0], "default": 0.0, "step": 0.01, "description": "Knowledge distillation weight", "group": "loss"},
+      "recon_loss_type": {"type": "choice", "options": ["cross_entropy", "mse", "l1", "huber", "focal"], "default": "cross_entropy", "description": "Reconstruction loss type", "group": "loss"},
+      "kl_annealing": {"type": "choice", "options": ["none", "linear", "cyclical", "monotonic"], "default": "linear", "description": "KL annealing schedule", "group": "loss"},
+      "kl_annealing_epochs": {"type": "int", "range": [5, 50], "default": 20, "step": 5, "description": "KL annealing epochs", "group": "loss"},
+      "beta_vae": {"type": "float", "range": [0.1, 4.0], "default": 1.0, "step": 0.1, "description": "Beta VAE weight", "group": "loss"},
+      "recon_temperature": {"type": "float", "range": [0.5, 2.0], "default": 1.0, "step": 0.1, "description": "Reconstruction temperature", "group": "loss"},
+      "contrastive_temperature": {"type": "float", "range": [0.01, 1.0], "default": 0.07, "step": 0.01, "description": "Contrastive temperature", "group": "loss"},
+      "distillation_temperature": {"type": "float", "range": [1.0, 10.0], "default": 4.0, "step": 1.0, "description": "Distillation temperature", "group": "loss"}
+    },
+
+    "normalization": {
+      "norm_type": {"type": "choice", "options": ["layer", "rms", "group", "batch", "none"], "default": "layer", "description": "Normalization type", "group": "norm"},
+      "norm_eps": {"type": "float", "range": [1e-6, 1e-3], "default": 1e-5, "step": 1e-6, "description": "Normalization epsilon", "group": "norm"},
+      "norm_affine": {"type": "bool", "options": [true, false], "default": true, "description": "Normalization affine parameters", "group": "norm"},
+      "pre_norm": {"type": "bool", "options": [true, false], "default": true, "description": "Pre-normalization", "group": "norm"},
+      "post_norm": {"type": "bool", "options": [true, false], "default": false, "description": "Post-normalization", "group": "norm"},
+      "group_norm_groups": {"type": "int", "range": [8, 32], "default": 32, "step": 8, "description": "Group normalization groups", "group": "norm"}
+    },
+
+    "activation": {
+      "activation_type": {"type": "choice", "options": ["relu", "gelu", "silu", "swish", "mish", "tanh"], "default": "gelu", "description": "Activation function", "group": "activation"},
+      "activation_checkpointing": {"type": "bool", "options": [true, false], "default": false, "description": "Gradient checkpointing", "group": "activation"},
+      "glu_variant": {"type": "choice", "options": ["none", "glu", "swiglu", "geglu"], "default": "none", "description": "GLU variant", "group": "activation"},
+      "ff_bias": {"type": "bool", "options": [true, false], "default": true, "description": "Feed-forward bias", "group": "activation"}
+    },
+
+    "regularization": {
+      "dropout_type": {"type": "choice", "options": ["standard", "drop_path", "stochastic"], "default": "standard", "description": "Dropout type", "group": "regularization"},
+      "drop_path_rate": {"type": "float", "range": [0.0, 0.3], "default": 0.0, "step": 0.05, "description": "Drop path rate", "group": "regularization"},
+      "stochastic_depth": {"type": "bool", "options": [true, false], "default": false, "description": "Stochastic depth", "group": "regularization"},
+      "rdrop_alpha": {"type": "float", "range": [0.0, 5.0], "default": 0.0, "step": 0.5, "description": "R-Drop regularization", "group": "regularization"},
+      "weight_tying": {"type": "bool", "options": [true, false], "default": true, "description": "Tie embedding weights", "group": "regularization"}
+    },
+
+    "initIALIZATION": {
+      "init_type": {"type": "choice", "options": ["xavier", "kaiming", "normal", "uniform", "small"], "default": "xavier", "description": "Weight initialization", "group": "init"},
+      "init_std": {"type": "float", "range": [0.01, 0.1], "default": 0.02, "step": 0.01, "description": "Initialization std", "group": "init"},
+      "init_gain": {"type": "float", "range": [0.5, 2.0], "default": 1.0, "step": 0.1, "description": "Initialization gain", "group": "init"}
+    },
+
+    "optimizer": {
+      "optimizer_type": {"type": "choice", "options": ["adam", "adamw", "sgd", "adagrad", "rmsprop"], "default": "adamw", "description": "Optimizer type", "group": "optimizer"},
+      "beta1": {"type": "float", "range": [0.8, 0.99], "default": 0.9, "step": 0.01, "description": "Adam beta1", "group": "optimizer"},
+      "beta2": {"type": "float", "range": [0.9, 0.999], "default": 0.999, "step": 0.001, "description": "Adam beta2", "group": "optimizer"},
+      "eps": {"type": "float", "range": [1e-9, 1e-6], "default": 1e-8, "step": 1e-9, "description": "Optimizer epsilon", "group": "optimizer"},
+      "momentum": {"type": "float", "range": [0.0, 0.99], "default": 0.0, "step": 0.01, "description": "SGD momentum", "group": "optimizer"},
+      "nesterov": {"type": "bool", "options": [true, false], "default": false, "description": "Nesterov momentum", "group": "optimizer"}
+    },
+
+    "data": {
+      "batch_size": {"type": "int", "range": [1, 32], "default": 4, "step": 1, "description": "Training batch size", "group": "data"},
+      "seq_length": {"type": "int", "range": [64, 2048], "default": 512, "step": 64, "description": "Training sequence length", "group": "data"},
+      "num_workers": {"type": "int", "range": [0, 8], "default": 2, "step": 1, "description": "DataLoader workers", "group": "data"},
+      "prefetch_factor": {"type": "int", "range": [1, 4], "default": 2, "step": 1, "description": "Prefetch factor", "group": "data"},
+      "pin_memory": {"type": "bool", "options": [true, false], "default": true, "description": "Pin memory in DataLoader", "group": "data"},
+      "persistent_workers": {"type": "bool", "options": [true, false], "default": true, "description": "Persistent workers", "group": "data"}
+    },
+
+    "evolution_strategy": {
+      "population_size": {"type": "int", "range": [4, 64], "default": 16, "step": 4, "description": "Population size", "group": "evolution"},
+      "mutation_rate": {"type": "float", "range": [0.1, 0.9], "default": 0.35, "step": 0.05, "description": "Mutation rate", "group": "evolution"},
+      "crossover_rate": {"type": "float", "range": [0.1, 0.9], "default": 0.5, "step": 0.05, "description": "Crossover rate", "group": "evolution"},
+      "elite_count": {"type": "int", "range": [1, 8], "default": 2, "step": 1, "description": "Elite preservation count", "group": "evolution"},
+      "tournament_size": {"type": "int", "range": [2, 8], "default": 3, "step": 1, "description": "Tournament selection size", "group": "evolution"},
+      "mutation_strength": {"type": "float", "range": [0.1, 1.0], "default": 0.3, "step": 0.1, "description": "Mutation strength", "group": "evolution"},
+      "crossover_type": {"type": "choice", "options": ["uniform", "single_point", "two_point", "blend"], "default": "uniform", "description": "Crossover type", "group": "evolution"},
+      "selection_pressure": {"type": "float", "range": [1.0, 3.0], "default": 1.5, "step": 0.1, "description": "Selection pressure", "group": "evolution"}
+    }
+  },
+
+  "trait_groups": {
+    "depth": {"description": "Architecture depth", "co_evolve": true, "mutation_correlation": 0.8},
+    "dimensions": {"description": "Model dimensions", "co_evolve": false, "mutation_correlation": 0.3},
+    "compression": {"description": "Compression parameters", "co_evolve": true, "mutation_correlation": 0.7},
+    "bottleneck": {"description": "Bottleneck mechanism", "co_evolve": true, "mutation_correlation": 0.9},
+    "attention": {"description": "Attention mechanism", "co_evolve": false, "mutation_correlation": 0.4},
+    "training": {"description": "Training hyperparameters", "co_evolve": false, "mutation_correlation": 0.2},
+    "loss": {"description": "Loss function weights", "co_evolve": false, "mutation_correlation": 0.3},
+    "norm": {"description": "Normalization", "co_evolve": false, "mutation_correlation": 0.5},
+    "activation": {"description": "Activation functions", "co_evolve": false, "mutation_correlation": 0.4},
+    "regularization": {"description": "Regularization", "co_evolve": false, "mutation_correlation": 0.3},
+    "init": {"description": "Initialization", "co_evolve": false, "mutation_correlation": 0.2},
+    "optimizer": {"description": "Optimizer settings", "co_evolve": false, "mutation_correlation": 0.3},
+    "data": {"description": "Data pipeline", "co_evolve": false, "mutation_correlation": 0.1},
+    "evolution": {"description": "Evolution strategy", "co_evolve": false, "mutation_correlation": 0.1}
+  },
+
+  "fitness_weights": {
+    "reconstruction_accuracy": 0.30,
+    "compression_ratio": 0.20,
+    "memory_savings": 0.15,
+    "inference_speed": 0.15,
+    "training_stability": 0.10,
+    "parameter_efficiency": 0.05,
+    "innovation_bonus": 0.05
+  },
+
+  "search_space_stats": {
+    "total_traits": 100,
+    "total_int_params": 45,
+    "total_float_params": 30,
+    "total_bool_params": 18,
+    "total_choice_params": 7,
+    "estimated_combinations": "10^20+",
+    "practical_search_limit": 50000
+  }
+}

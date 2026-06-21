@@ -1,0 +1,1422 @@
+{
+  "timestamp": "2026-06-20T19:56:57.643638",
+  "device": "cuda",
+  "model": "lait-granite",
+  "adapter_path": "lait_adapter_best.pt",
+  "adapter_config": {
+    "d_model": 128,
+    "n_encoder_layers": 4,
+    "n_decoder_layers": 4,
+    "n_heads": 4,
+    "compression_ratio": 1.0,
+    "ff_mult": 4,
+    "dropout": 0.0,
+    "vocab_size": 256,
+    "max_seq_len": 1024,
+    "activation": "gelu"
+  },
+  "adapter_params": 2064768,
+  "ollama_available": true,
+  "ollama_models": [
+    "lait-granite:latest",
+    "maryasov/qwen2.5-coder-cline:latest",
+    "jessup-sim:granite4.1",
+    "granite4.1:8b",
+    "gemma4:e2b-it-q4_K_M",
+    "omnicient_system-sim:latest",
+    "nova-sim:latest",
+    "jessup-sim:latest",
+    "nova_reveal-sim:latest",
+    "all-minilm:latest",
+    "glm4:latest",
+    "llama3.2:8k",
+    "lfm2.5-thinking:1.2b",
+    "minimax-m2.5:cloud",
+    "gemma3:latest",
+    "qwen3-coder:480b-cloud",
+    "glm-ocr:latest",
+    "qwen3-vl:latest",
+    "qwen3-vl:8b",
+    "deepseek-v3.2:cloud",
+    "olmo-3:latest",
+    "deepseek-v3.1:671b-cloud",
+    "gemma3:12b-cloud",
+    "gpt-oss:20b-cloud",
+    "nomic-embed-text:latest",
+    "llama3.2:latest",
+    "glm-4.6:cloud",
+    "embeddinggemma:latest"
+  ],
+  "prompts_total": 33,
+  "results": [
+    {
+      "id": "tiny_1",
+      "category": "tiny",
+      "description": "Minimal input",
+      "input": {
+        "text": "Hi",
+        "bytes": 2,
+        "chars": 2,
+        "declared_tokens": 2
+      },
+      "lait": {
+        "original_tokens": 2,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2746397,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.0,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 188.53,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 2,
+        "total_bytes": 2,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Hello! How may I assist you today?",
+        "response_bytes": 34,
+        "response_words": 7,
+        "prompt_eval_count": 31,
+        "eval_count": 10,
+        "eval_duration_ms": 154.73,
+        "tokens_per_sec": 64.63,
+        "latency_ms": 7045.61,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "tiny_2",
+      "category": "tiny",
+      "description": "Minimal input",
+      "input": {
+        "text": "OK",
+        "bytes": 2,
+        "chars": 2,
+        "declared_tokens": 2
+      },
+      "lait": {
+        "original_tokens": 2,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2746759,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.0,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 8.16,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 2,
+        "total_bytes": 2,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Understood. How may I assist you today?",
+        "response_bytes": 39,
+        "response_words": 7,
+        "prompt_eval_count": 31,
+        "eval_count": 11,
+        "eval_duration_ms": 156.39,
+        "tokens_per_sec": 70.34,
+        "latency_ms": 411.57,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "tiny_3",
+      "category": "tiny",
+      "description": "Minimal input",
+      "input": {
+        "text": "Yes",
+        "bytes": 3,
+        "chars": 3,
+        "declared_tokens": 3
+      },
+      "lait": {
+        "original_tokens": 3,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2745706,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.0,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.14,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 3,
+        "total_bytes": 3,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Acknowledged. How may I assist you today?",
+        "response_bytes": 41,
+        "response_words": 7,
+        "prompt_eval_count": 31,
+        "eval_count": 11,
+        "eval_duration_ms": 155.54,
+        "tokens_per_sec": 70.72,
+        "latency_ms": 339.86,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "tiny_4",
+      "category": "tiny",
+      "description": "Minimal input",
+      "input": {
+        "text": "No",
+        "bytes": 2,
+        "chars": 2,
+        "declared_tokens": 2
+      },
+      "lait": {
+        "original_tokens": 2,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2746429,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.0,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.47,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 2,
+        "total_bytes": 2,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Understood. How may I assist you today?",
+        "response_bytes": 39,
+        "response_words": 7,
+        "prompt_eval_count": 31,
+        "eval_count": 11,
+        "eval_duration_ms": 155.9,
+        "tokens_per_sec": 70.56,
+        "latency_ms": 334.16,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "tiny_5",
+      "category": "tiny",
+      "description": "Minimal input",
+      "input": {
+        "text": "Test",
+        "bytes": 4,
+        "chars": 4,
+        "declared_tokens": 4
+      },
+      "lait": {
+        "original_tokens": 4,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2746244,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.0,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 7.08,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 4,
+        "total_bytes": 4,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Understood. How may I assist you today?",
+        "response_bytes": 39,
+        "response_words": 7,
+        "prompt_eval_count": 31,
+        "eval_count": 11,
+        "eval_duration_ms": 155.51,
+        "tokens_per_sec": 70.73,
+        "latency_ms": 320.95,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "short_1",
+      "category": "short",
+      "description": "Simple greeting",
+      "input": {
+        "text": "Hello world!",
+        "bytes": 12,
+        "chars": 12,
+        "declared_tokens": 12
+      },
+      "lait": {
+        "original_tokens": 12,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2747102,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.01,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.35,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 12,
+        "total_bytes": 12,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Hello! How may I assist you today?",
+        "response_bytes": 34,
+        "response_words": 7,
+        "prompt_eval_count": 33,
+        "eval_count": 10,
+        "eval_duration_ms": 140.69,
+        "tokens_per_sec": 71.08,
+        "latency_ms": 319.79,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "short_2",
+      "category": "short",
+      "description": "Pangram fragment",
+      "input": {
+        "text": "The quick brown fox.",
+        "bytes": 20,
+        "chars": 20,
+        "declared_tokens": 20
+      },
+      "lait": {
+        "original_tokens": 20,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2745698,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.02,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.34,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 20,
+        "total_bytes": 20,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Your statement \"The quick brown fox\" is a well-known pangram—a sentence that contains every letter of the English alphabet at least once. It is often used for typing practice or to test text rendering in fonts and keyboards. Is there anything specific you would like to know or discuss about this phrase?",
+        "response_bytes": 306,
+        "response_words": 52,
+        "prompt_eval_count": 35,
+        "eval_count": 61,
+        "eval_duration_ms": 901.4,
+        "tokens_per_sec": 67.67,
+        "latency_ms": 1077.86,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "short_3",
+      "category": "short",
+      "description": "Simple statement",
+      "input": {
+        "text": "Machine learning is great.",
+        "bytes": 26,
+        "chars": 26,
+        "declared_tokens": 27
+      },
+      "lait": {
+        "original_tokens": 26,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2745249,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.03,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.44,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 26,
+        "total_bytes": 26,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Yes, machine learning offers powerful tools for data analysis, pattern recognition, and predictive modeling across various domains such as healthcare, finance, and autonomous systems.",
+        "response_bytes": 183,
+        "response_words": 24,
+        "prompt_eval_count": 35,
+        "eval_count": 31,
+        "eval_duration_ms": 454.16,
+        "tokens_per_sec": 68.26,
+        "latency_ms": 640.76,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "short_4",
+      "category": "short",
+      "description": "Definition",
+      "input": {
+        "text": "Python is a programming language.",
+        "bytes": 33,
+        "chars": 33,
+        "declared_tokens": 33
+      },
+      "lait": {
+        "original_tokens": 33,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2740488,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.03,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 8.08,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 33,
+        "total_bytes": 33,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Yes, Python is indeed a high-level, interpreted programming language known for its readability and versatility across various domains such as web development, data analysis, artificial intelligence, and more.",
+        "response_bytes": 208,
+        "response_words": 28,
+        "prompt_eval_count": 36,
+        "eval_count": 36,
+        "eval_duration_ms": 533.39,
+        "tokens_per_sec": 67.49,
+        "latency_ms": 712.17,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "short_5",
+      "category": "short",
+      "description": "Observation",
+      "input": {
+        "text": "The weather is nice today.",
+        "bytes": 26,
+        "chars": 26,
+        "declared_tokens": 26
+      },
+      "lait": {
+        "original_tokens": 26,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2745309,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.03,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 7.19,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 26,
+        "total_bytes": 26,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "That's great! Enjoy the pleasant conditions.",
+        "response_bytes": 44,
+        "response_words": 6,
+        "prompt_eval_count": 36,
+        "eval_count": 10,
+        "eval_duration_ms": 140.54,
+        "tokens_per_sec": 71.16,
+        "latency_ms": 323.23,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "medium_1",
+      "category": "medium",
+      "description": "Full pangram",
+      "input": {
+        "text": "The quick brown fox jumps over the lazy dog.",
+        "bytes": 44,
+        "chars": 44,
+        "declared_tokens": 44
+      },
+      "lait": {
+        "original_tokens": 44,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2745617,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.04,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.41,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 44,
+        "total_bytes": 44,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The sentence \"The quick brown fox jumps over the lazy dog\" is a well-known pangram, containing every letter of the English alphabet at least once. It succinctly illustrates the agility of the fox and the inactivity of the dog.",
+        "response_bytes": 226,
+        "response_words": 39,
+        "prompt_eval_count": 40,
+        "eval_count": 49,
+        "eval_duration_ms": 728.22,
+        "tokens_per_sec": 67.29,
+        "latency_ms": 884.86,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "medium_2",
+      "category": "medium",
+      "description": "Technology statement",
+      "input": {
+        "text": "Machine learning is transforming technology worldwide.",
+        "bytes": 54,
+        "chars": 54,
+        "declared_tokens": 54
+      },
+      "lait": {
+        "original_tokens": 54,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2745474,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.05,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.75,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 54,
+        "total_bytes": 54,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Indeed, machine learning is revolutionizing numerous sectors globally by enabling advanced data analysis, automation, predictive modeling, and personalized services across industries such as healthcare, finance, transportation, and more. Its impact continues to grow rapidly.",
+        "response_bytes": 275,
+        "response_words": 34,
+        "prompt_eval_count": 37,
+        "eval_count": 45,
+        "eval_duration_ms": 668.57,
+        "tokens_per_sec": 67.31,
+        "latency_ms": 857.1,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "medium_3",
+      "category": "medium",
+      "description": "AI statement",
+      "input": {
+        "text": "Neural networks can learn complex patterns from data.",
+        "bytes": 53,
+        "chars": 53,
+        "declared_tokens": 52
+      },
+      "lait": {
+        "original_tokens": 53,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2744107,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.05,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.36,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 53,
+        "total_bytes": 53,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Yes, neural networks, through their layered architectures and adjustable parameters (weights), can effectively learn intricate patterns and relationships within datasets by adjusting these weights during training via gradient descent or similar optimization algorithms. This capability makes them powerful tools for tasks such as image recognition, natural language processing, and predictive modeling.",
+        "response_bytes": 402,
+        "response_words": 51,
+        "prompt_eval_count": 40,
+        "eval_count": 60,
+        "eval_duration_ms": 887.0,
+        "tokens_per_sec": 67.64,
+        "latency_ms": 1063.81,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "medium_4",
+      "category": "medium",
+      "description": "LAIT description",
+      "input": {
+        "text": "The adapter compresses text into latent representations.",
+        "bytes": 56,
+        "chars": 56,
+        "declared_tokens": 55
+      },
+      "lait": {
+        "original_tokens": 56,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2736203,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.05,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.04,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 56,
+        "total_bytes": 56,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The adapter you mentioned performs **text compression** by mapping input sequences to **latent (hidden) representations**, capturing essential semantic information in a reduced-dimensional space. This process enables efficient processing and generation while preserving key content details.",
+        "response_bytes": 290,
+        "response_words": 35,
+        "prompt_eval_count": 39,
+        "eval_count": 45,
+        "eval_duration_ms": 664.56,
+        "tokens_per_sec": 67.71,
+        "latency_ms": 848.21,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "medium_5",
+      "category": "medium",
+      "description": "Evolution description",
+      "input": {
+        "text": "Genetic evolution finds optimal architecture configurations.",
+        "bytes": 60,
+        "chars": 60,
+        "declared_tokens": 58
+      },
+      "lait": {
+        "original_tokens": 60,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2740940,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.06,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.02,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 60,
+        "total_bytes": 60,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Yes, genetic algorithms and evolutionary strategies can explore a vast design space to discover high-performing architectural solutions by simulating processes analogous to natural selection—selecting for better fitness over successive generations.",
+        "response_bytes": 250,
+        "response_words": 30,
+        "prompt_eval_count": 38,
+        "eval_count": 39,
+        "eval_duration_ms": 576.61,
+        "tokens_per_sec": 67.64,
+        "latency_ms": 762.56,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "long_1",
+      "category": "long",
+      "description": "Extended pangram",
+      "input": {
+        "text": "The quick brown fox jumps over the lazy dog. This is a longer sentence that tests the adapter ability to reconstruct arbitrary text accurately.",
+        "bytes": 143,
+        "chars": 143,
+        "declared_tokens": 144
+      },
+      "lait": {
+        "original_tokens": 143,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2739399,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.14,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 7.73,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 143,
+        "total_bytes": 143,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The sentence you provided has been reconstructed accurately:\n\n\"The quick brown fox jumps over the lazy dog. This is a longer sentence that tests the adapter's ability to reconstruct arbitrary text accurately.\"",
+        "response_bytes": 209,
+        "response_words": 32,
+        "prompt_eval_count": 56,
+        "eval_count": 37,
+        "eval_duration_ms": 547.11,
+        "tokens_per_sec": 67.63,
+        "latency_ms": 731.53,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "long_2",
+      "category": "long",
+      "description": "Extended AI statement",
+      "input": {
+        "text": "Machine learning is transforming technology worldwide. Neural networks can learn complex patterns from data and make predictions about future events.",
+        "bytes": 149,
+        "chars": 149,
+        "declared_tokens": 151
+      },
+      "lait": {
+        "original_tokens": 149,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2741998,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.15,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 10.67,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 149,
+        "total_bytes": 149,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "That's correct. Machine learning, particularly deep learning using neural networks, enables computers to automatically identify intricate patterns in large datasets and generate accurate forecasts for various applications across industries such as healthcare, finance, and autonomous systems.",
+        "response_bytes": 292,
+        "response_words": 36,
+        "prompt_eval_count": 52,
+        "eval_count": 44,
+        "eval_duration_ms": 646.63,
+        "tokens_per_sec": 68.05,
+        "latency_ms": 827.78,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "long_3",
+      "category": "long",
+      "description": "Technical description",
+      "input": {
+        "text": "The adapter compresses text into latent representations using a transformer encoder-decoder architecture with adaptive pooling bottleneck.",
+        "bytes": 138,
+        "chars": 138,
+        "declared_tokens": 136
+      },
+      "lait": {
+        "original_tokens": 138,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2738050,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.13,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 9.91,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 138,
+        "total_bytes": 138,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The adapter employs a transformer-based encoder-decoder structure to encode input text into latent representations, utilizing an adaptive pooling bottleneck for efficient feature extraction and compression.",
+        "response_bytes": 206,
+        "response_words": 25,
+        "prompt_eval_count": 50,
+        "eval_count": 31,
+        "eval_duration_ms": 460.17,
+        "tokens_per_sec": 67.37,
+        "latency_ms": 653.98,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "long_4",
+      "category": "long",
+      "description": "Evolution description",
+      "input": {
+        "text": "Genetic evolution explores a 120-trait genome to find optimal architecture configurations for neural text compression with 100% reconstruction.",
+        "bytes": 143,
+        "chars": 143,
+        "declared_tokens": 147
+      },
+      "lait": {
+        "original_tokens": 143,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2742021,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.14,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.25,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 143,
+        "total_bytes": 143,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The described scenario involves using genetic algorithms (a form of evolutionary computation) to evolve a high-dimensional genome consisting of 120 traits, aiming to discover the most effective architectural design for compressing textual data through a neural network while achieving perfect (100%) reconstruction of the original text. This process would iteratively modify and select configurations based on their performance in terms of compression efficiency and fidelity of reconstructed output.",
+        "response_bytes": 500,
+        "response_words": 68,
+        "prompt_eval_count": 55,
+        "eval_count": 80,
+        "eval_duration_ms": 1192.62,
+        "tokens_per_sec": 67.08,
+        "latency_ms": 1386.54,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "long_5",
+      "category": "long",
+      "description": "News headline",
+      "input": {
+        "text": "Los Angeles (US), Jun 20 (IANS) A massive wildfire has broken out in the hills above Los Angeles, forcing thousands of residents to evacuate their homes.",
+        "bytes": 153,
+        "chars": 153,
+        "declared_tokens": 152
+      },
+      "lait": {
+        "original_tokens": 153,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2744935,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.15,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 9.75,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 153,
+        "total_bytes": 153,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "A large wildfire erupted in the hills surrounding Los Angeles on June 20th, prompting widespread evacuations as thousands of local residents were forced to leave their homes to ensure safety.",
+        "response_bytes": 191,
+        "response_words": 30,
+        "prompt_eval_count": 64,
+        "eval_count": 36,
+        "eval_duration_ms": 530.51,
+        "tokens_per_sec": 67.86,
+        "latency_ms": 725.69,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "technical_1",
+      "category": "technical",
+      "description": "Python code",
+      "input": {
+        "text": "def train_model(config, data): model = LAITAdapter(config); optimizer = AdamW(model.parameters()); for epoch in range(100): loss = train_epoch(model, data); return model",
+        "bytes": 169,
+        "chars": 169,
+        "declared_tokens": 160
+      },
+      "lait": {
+        "original_tokens": 169,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2743270,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.17,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.51,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 169,
+        "total_bytes": 169,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The provided code snippet defines a function `train_model` that trains a model using the specified configuration and data. Here's a concise explanation:\n\n1. **Initialization**:\n   - `model = LAITAdapter(config)`: Creates an instance of `LAITAdapter` with the given `config`.\n   - `optimizer = AdamW(model.parameters())`: Initializes the optimizer (`AdamW`) for parameter optimization.\n\n2. **Training Loop**:\n   - `for epoch in range(100):`: Iterates over 100 training epochs.\n   - `loss = train_epoch(model, data)`: Executes a single training epoch using the `train_epoch` function, passing the current model and data. The loss from this epoch is stored in `loss`.\n\n3. **Return**:\n   - `return model`: After completing all epochs, returns the trained `model`.\n\nThe code assumes the existence of a `LAITAdapter` class and a `train_epoch` function, which are not defined within the snippet. The training process involves optimizing the model parameters using the AdamW optimizer over 100 epochs, with each epoch's loss calculated by `train_epoch`.",
+        "response_bytes": 1045,
+        "response_words": 145,
+        "prompt_eval_count": 68,
+        "eval_count": 233,
+        "eval_duration_ms": 3471.01,
+        "tokens_per_sec": 67.13,
+        "latency_ms": 3665.46,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "technical_2",
+      "category": "technical",
+      "description": "JSON config",
+      "input": {
+        "text": "{\"name\": \"lait-adapter\", \"version\": \"2.0\", \"compression_ratio\": 0.5, \"d_model\": 128, \"n_layers\": 4, \"accuracy\": 1.0}",
+        "bytes": 116,
+        "chars": 116,
+        "declared_tokens": 120
+      },
+      "lait": {
+        "original_tokens": 116,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2745443,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.11,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 7.21,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 116,
+        "total_bytes": 116,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The provided JSON describes a language model configuration named **lait-adapter** (version 2.0). Key specifications include:\n\n- **Compression Ratio:** 0.5 (indicating efficient parameter usage)\n- **Model Dimensions:**\n  - **d_model:** 128 (embedding dimension size)\n  - **n_layers:** 4 (number of transformer layers)\n\nThe model achieves an accuracy of **1.0**, suggesting perfect performance in its designated tasks or dataset.",
+        "response_bytes": 427,
+        "response_words": 55,
+        "prompt_eval_count": 78,
+        "eval_count": 97,
+        "eval_duration_ms": 1438.82,
+        "tokens_per_sec": 67.42,
+        "latency_ms": 1646.86,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "technical_3",
+      "category": "technical",
+      "description": "SQL query",
+      "input": {
+        "text": "SELECT * FROM users WHERE age > 25 AND city = \"Los Angeles\" ORDER BY name ASC LIMIT 100",
+        "bytes": 87,
+        "chars": 87,
+        "declared_tokens": 88
+      },
+      "lait": {
+        "original_tokens": 87,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2748278,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.08,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.15,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 87,
+        "total_bytes": 87,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The provided text is an SQL query, not a question for me to answer directly. However, I can explain what this query does:\n\n```sql\nSELECT * \nFROM users \nWHERE age > 25 \n  AND city = \"Los Angeles\" \nORDER BY name ASC \nLIMIT 100;\n```\n\n- **SELECT \\***: Retrieves all columns from the specified table.\n- **FROM users**: Targets the `users` table.\n- **WHERE age > 25 AND city = \"Los Angeles\"**: Filters rows where the `age` column is greater than 25 and the `city` column equals \"Los Angeles\".\n- **ORDER BY name ASC**: Sorts the resulting rows by the `name` column in ascending order.\n- **LIMIT 100**: Restricts the output to a maximum of 100 rows.\n\nThis query fetches up to 100 users older than 25 living in Los Angeles, ordered alphabetically by their names.",
+        "response_bytes": 753,
+        "response_words": 135,
+        "prompt_eval_count": 53,
+        "eval_count": 193,
+        "eval_duration_ms": 2872.15,
+        "tokens_per_sec": 67.2,
+        "latency_ms": 3054.26,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "technical_4",
+      "category": "technical",
+      "description": "Git command",
+      "input": {
+        "text": "git commit -m \"feat: add GPU training support with CUDA 12.8 for RTX 5060\"",
+        "bytes": 74,
+        "chars": 74,
+        "declared_tokens": 75
+      },
+      "lait": {
+        "original_tokens": 74,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2747476,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.07,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.06,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 74,
+        "total_bytes": 74,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The command `git commit -m \"feat: add GPU training support with CUDA 12.8 for RTX 5060\"` creates a new commit in the Git repository with the message indicating that a feature has been added to enable GPU training using CUDA version 12.8 on an RTX 5060 graphics card. This commit message follows conventional commit format, specifying the type of change (`feat` for a new feature) and a concise description of the modification.",
+        "response_bytes": 426,
+        "response_words": 72,
+        "prompt_eval_count": 54,
+        "eval_count": 96,
+        "eval_duration_ms": 1421.31,
+        "tokens_per_sec": 67.54,
+        "latency_ms": 1618.46,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "technical_5",
+      "category": "technical",
+      "description": "curl command",
+      "input": {
+        "text": "curl -X POST http://localhost:8001/compress -H \"Content-Type: application/json\" -d '{\"text\": \"Hello world!\"}'",
+        "bytes": 109,
+        "chars": 109,
+        "declared_tokens": 108
+      },
+      "lait": {
+        "original_tokens": 109,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2742766,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.11,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 7.02,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 109,
+        "total_bytes": 109,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The command you provided is a cURL request that sends a POST request to `http://localhost:8001/compress` with a JSON payload containing the text `\"Hello world!\"`. The `-H \"Content-Type: application/json\"` header specifies that the request body is in JSON format. This request likely invokes a service running on `localhost` at port 8001 that compresses the provided text and returns the compressed result. \n\nTo execute this command, ensure that the target service (e.g., a compression API) is running and accessible at the specified URL. The response from the server will depend on how the compression service is implemented.",
+        "response_bytes": 625,
+        "response_words": 95,
+        "prompt_eval_count": 61,
+        "eval_count": 130,
+        "eval_duration_ms": 1935.1,
+        "tokens_per_sec": 67.18,
+        "latency_ms": 2123.96,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "sentence_1",
+      "category": "sentence",
+      "description": "Achievement statement",
+      "input": {
+        "text": "The system achieves 100% reconstruction accuracy at all compression ratios from 1x to 16x on GPU.",
+        "bytes": 97,
+        "chars": 97,
+        "declared_tokens": 97
+      },
+      "lait": {
+        "original_tokens": 97,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2748308,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.09,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 8.06,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 97,
+        "total_bytes": 97,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The system consistently attains perfect (100%) reconstruction accuracy across a wide range of compression ratios—from 1:1 up to 16:1—when executed on a GPU platform. This indicates highly efficient and reliable data compression and reconstruction performance.",
+        "response_bytes": 263,
+        "response_words": 35,
+        "prompt_eval_count": 53,
+        "eval_count": 50,
+        "eval_duration_ms": 740.93,
+        "tokens_per_sec": 67.48,
+        "latency_ms": 938.72,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "sentence_2",
+      "category": "sentence",
+      "description": "Integration statement",
+      "input": {
+        "text": "LAIT integrates with Ollama language models via a Model Context Protocol server for real-time compression.",
+        "bytes": 106,
+        "chars": 106,
+        "declared_tokens": 103
+      },
+      "lait": {
+        "original_tokens": 106,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2746260,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.1,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 8.01,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 106,
+        "total_bytes": 106,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "LAIT achieves integration with Ollama language models through the use of a Model Context Protocol server, which facilitates real-time data compression to enhance efficiency and responsiveness during interactions.",
+        "response_bytes": 212,
+        "response_words": 28,
+        "prompt_eval_count": 50,
+        "eval_count": 35,
+        "eval_duration_ms": 518.46,
+        "tokens_per_sec": 67.51,
+        "latency_ms": 694.62,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "sentence_3",
+      "category": "sentence",
+      "description": "Genome description",
+      "input": {
+        "text": "The 120-trait genome defines architecture depth, model dimensions, compression parameters, and bottleneck types.",
+        "bytes": 112,
+        "chars": 112,
+        "declared_tokens": 112
+      },
+      "lait": {
+        "original_tokens": 112,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2743951,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.11,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.1,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 112,
+        "total_bytes": 112,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Understood. The \"120-trait genome\" you mentioned appears to be a conceptual framework specifying various attributes of a complex system, such as:\n\n1. **Architecture Depth**: Refers to the hierarchical layers or levels within an architectural design, influencing complexity and functionality.\n2. **Model Dimensions**: Likely pertains to the spatial or dimensional aspects of a model, which could affect how data is represented and processed.\n3. **Compression Parameters**: These parameters control how data is compressed, impacting storage efficiency and retrieval speed.\n4. **Bottleneck Types**: Indicates points within a system where throughput is constrained, affecting overall performance.\n\nIf you need more detailed explanations or have specific questions about any of these traits, feel free to ask!",
+        "response_bytes": 804,
+        "response_words": 112,
+        "prompt_eval_count": 50,
+        "eval_count": 147,
+        "eval_duration_ms": 2197.68,
+        "tokens_per_sec": 66.89,
+        "latency_ms": 2376.8,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "sentence_4",
+      "category": "sentence",
+      "description": "Training description",
+      "input": {
+        "text": "Training uses AdamW optimizer with cosine annealing scheduler and cross-entropy loss on 500 diverse samples.",
+        "bytes": 108,
+        "chars": 108,
+        "declared_tokens": 108
+      },
+      "lait": {
+        "original_tokens": 108,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2744135,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.11,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.77,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 108,
+        "total_bytes": 108,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The training setup involves:\n\n1. **Optimizer**: AdamW, which combines the benefits of Adam optimization with weight decay regularization.\n2. **Scheduler**: Cosine Annealing, gradually reducing the learning rate following a cosine curve to fine-tune convergence.\n3. **Loss Function**: Cross-Entropy Loss, suitable for multi-class classification tasks to measure the difference between predicted probabilities and true labels.\n4. **Sample Size**: 500 diverse samples, ensuring a broad representation of the data distribution to improve model generalization.\n\nThis configuration aims to efficiently train a model while adapting learning rates dynamically and handling class imbalance effectively.",
+        "response_bytes": 693,
+        "response_words": 90,
+        "prompt_eval_count": 51,
+        "eval_count": 123,
+        "eval_duration_ms": 1825.64,
+        "tokens_per_sec": 67.37,
+        "latency_ms": 2007.35,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "sentence_5",
+      "category": "sentence",
+      "description": "MCP description",
+      "input": {
+        "text": "The MCP server exposes 5 tools: compress, decompress, list, stats, and clear for managing text compression.",
+        "bytes": 107,
+        "chars": 107,
+        "declared_tokens": 107
+      },
+      "lait": {
+        "original_tokens": 107,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2745621,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.1,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 7.05,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 107,
+        "total_bytes": 107,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "Understood. The MCP server provides the following tools for text compression management:\n\n1. **compress**: Encodes or reduces the size of text data.\n2. **decompress**: Decodes or restores compressed text to its original form.\n3. **list**: Displays a list of available compressed files or entries.\n4. **stats**: Provides statistics about compressed files, such as size and compression ratio.\n5. **clear**: Removes or deletes specified compressed files from the server.\n\nThese tools facilitate efficient handling of text compression tasks. How may I assist you further with these functionalities?",
+        "response_bytes": 594,
+        "response_words": 86,
+        "prompt_eval_count": 54,
+        "eval_count": 116,
+        "eval_duration_ms": 1726.37,
+        "tokens_per_sec": 67.19,
+        "latency_ms": 1911.35,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "paragraph_1",
+      "category": "paragraph",
+      "description": "System description paragraph",
+      "input": {
+        "text": "LAIT (Latent Attention in Tokens) is a neural text compression system that achieves 100% lossless reconstruction of arbitrary text through learned latent representations. The system integrates with Ollama language models via a Model Context Protocol server, enabling real-time compression and decompression as a tool service.",
+        "bytes": 325,
+        "chars": 325,
+        "declared_tokens": 312
+      },
+      "lait": {
+        "original_tokens": 325,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2736351,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.32,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 6.98,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 325,
+        "total_bytes": 325,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "LAIT Granite: LAIT is a neural network-based text compression method ensuring exact (lossless) recovery of any input text by using learned latent representations. It connects to Ollama language models through an Ollama Model Context Protocol server, allowing seamless real-time compression and decompression as a service tool.",
+        "response_bytes": 326,
+        "response_words": 46,
+        "prompt_eval_count": 89,
+        "eval_count": 63,
+        "eval_duration_ms": 931.21,
+        "tokens_per_sec": 67.65,
+        "latency_ms": 1124.03,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "paragraph_2",
+      "category": "paragraph",
+      "description": "Evolution description paragraph",
+      "input": {
+        "text": "The adapter is trained using genetic evolution across a 120-trait genome to find optimal architecture configurations. The genome defines architecture depth, model dimensions, compression parameters, bottleneck types, attention mechanisms, training hyperparameters, and evolution strategy. This approach achieves 100% reconstruction accuracy at compression ratios up to 16x on GPU.",
+        "bytes": 380,
+        "chars": 380,
+        "declared_tokens": 396
+      },
+      "lait": {
+        "original_tokens": 380,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2735150,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.37,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 7.82,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 380,
+        "total_bytes": 380,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The adapter employs a genetic evolution process across a 120-trait genome to identify optimal architectural configurations for achieving high-performance compression. Key traits include architecture depth, model dimensions, compression parameters, bottleneck types, attention mechanisms, training hyperparameters, and the evolution strategy itself. This method attains 100% reconstruction accuracy at compression ratios up to 16× on GPU hardware.",
+        "response_bytes": 447,
+        "response_words": 55,
+        "prompt_eval_count": 95,
+        "eval_count": 75,
+        "eval_duration_ms": 1116.43,
+        "tokens_per_sec": 67.18,
+        "latency_ms": 1308.91,
+        "model": "lait-granite"
+      }
+    },
+    {
+      "id": "paragraph_3",
+      "category": "paragraph",
+      "description": "MCP description paragraph",
+      "input": {
+        "text": "The MCP server exposes 5 tools for managing text compression: lait_compress compresses text to latent representation, lait_decompress decompresses latent back to text, lait_list lists all cached compressions, lait_stats gets compression statistics, and lait_clear clears the compression cache. The server runs on port 8001 and supports both API and MCP protocol access.",
+        "bytes": 369,
+        "chars": 369,
+        "declared_tokens": 408
+      },
+      "lait": {
+        "original_tokens": 369,
+        "latent_length": 1024,
+        "latent_dim": 128,
+        "latent_json_bytes": 2736401,
+        "latent_float32_bytes": 524288,
+        "compression_ratio": 0.36,
+        "effective_compression_pct": 0.0,
+        "inference_time_ms": 7.0,
+        "reconstruction_accuracy": 1.0,
+        "exact_match": true,
+        "correct_bytes": 369,
+        "total_bytes": 369,
+        "truncated": false
+      },
+      "decompress": {
+        "exact_match": true
+      },
+      "ollama": {
+        "success": true,
+        "response": "The MCP server on port 8001 provides five tools for text compression management via API and MCP protocols:\n\n1. **lait_compress**: Compresses input text into a latent representation.\n2. **lait_decompress**: Decompresses a latent representation back to the original text.\n3. **lait_list**: Lists all cached compressed texts.\n4. **lait_stats**: Retrieves statistics about the compression operations.\n5. **lait_clear**: Clears the entire compression cache.\n\nThese tools facilitate efficient handling of text compression tasks on the server.",
+        "response_bytes": 536,
+        "response_words": 72,
+        "prompt_eval_count": 106,
+        "eval_count": 112,
+        "eval_duration_ms": 1650.53,
+        "tokens_per_sec": 67.86,
+        "latency_ms": 1887.18,
+        "model": "lait-granite"
+      }
+    }
+  ],
+  "summary": {
+    "total_prompts": 33,
+    "exact_matches": 33,
+    "accuracy_pct": 100.0,
+    "total_input_bytes": 3282,
+    "total_output_json_bytes": 90537535,
+    "total_output_f32_bytes": 17301504,
+    "overall_compression_ratio": 0.0,
+    "overall_space_saved_pct": -2758508.6,
+    "total_inference_ms": 417.4,
+    "avg_inference_ms": 12.65,
+    "total_ollama_latency_ms": 44626.0,
+    "avg_ollama_latency_ms": 1352.0,
+    "total_ollama_eval_tokens": 2138,
+    "avg_ollama_tokens_per_sec": 68.0
+  }
+}

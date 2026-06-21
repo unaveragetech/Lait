@@ -1,0 +1,228 @@
+{
+  "_comment": "LAIT Test Prompts - Varying sizes for testing compression and reconstruction",
+  "_version": "1.0",
+  "_description": "Test prompts organized by size category. Use with verify_adapter.py or lait_mcp_server.py",
+  
+  "prompts": {
+    "tiny_1": {
+      "text": "Hi",
+      "category": "tiny",
+      "tokens": 2,
+      "description": "Minimal input"
+    },
+    "tiny_2": {
+      "text": "OK",
+      "category": "tiny",
+      "tokens": 2,
+      "description": "Minimal input"
+    },
+    "tiny_3": {
+      "text": "Yes",
+      "category": "tiny",
+      "tokens": 3,
+      "description": "Minimal input"
+    },
+    "tiny_4": {
+      "text": "No",
+      "category": "tiny",
+      "tokens": 2,
+      "description": "Minimal input"
+    },
+    "tiny_5": {
+      "text": "Test",
+      "category": "tiny",
+      "tokens": 4,
+      "description": "Minimal input"
+    },
+    
+    "short_1": {
+      "text": "Hello world!",
+      "category": "short",
+      "tokens": 12,
+      "description": "Simple greeting"
+    },
+    "short_2": {
+      "text": "The quick brown fox.",
+      "category": "short",
+      "tokens": 20,
+      "description": "Pangram fragment"
+    },
+    "short_3": {
+      "text": "Machine learning is great.",
+      "category": "short",
+      "tokens": 27,
+      "description": "Simple statement"
+    },
+    "short_4": {
+      "text": "Python is a programming language.",
+      "category": "short",
+      "tokens": 33,
+      "description": "Definition"
+    },
+    "short_5": {
+      "text": "The weather is nice today.",
+      "category": "short",
+      "tokens": 26,
+      "description": "Observation"
+    },
+    
+    "medium_1": {
+      "text": "The quick brown fox jumps over the lazy dog.",
+      "category": "medium",
+      "tokens": 44,
+      "description": "Full pangram"
+    },
+    "medium_2": {
+      "text": "Machine learning is transforming technology worldwide.",
+      "category": "medium",
+      "tokens": 54,
+      "description": "Technology statement"
+    },
+    "medium_3": {
+      "text": "Neural networks can learn complex patterns from data.",
+      "category": "medium",
+      "tokens": 52,
+      "description": "AI statement"
+    },
+    "medium_4": {
+      "text": "The adapter compresses text into latent representations.",
+      "category": "medium",
+      "tokens": 55,
+      "description": "LAIT description"
+    },
+    "medium_5": {
+      "text": "Genetic evolution finds optimal architecture configurations.",
+      "category": "medium",
+      "tokens": 58,
+      "description": "Evolution description"
+    },
+    
+    "long_1": {
+      "text": "The quick brown fox jumps over the lazy dog. This is a longer sentence that tests the adapter ability to reconstruct arbitrary text accurately.",
+      "category": "long",
+      "tokens": 144,
+      "description": "Extended pangram"
+    },
+    "long_2": {
+      "text": "Machine learning is transforming technology worldwide. Neural networks can learn complex patterns from data and make predictions about future events.",
+      "category": "long",
+      "tokens": 151,
+      "description": "Extended AI statement"
+    },
+    "long_3": {
+      "text": "The adapter compresses text into latent representations using a transformer encoder-decoder architecture with adaptive pooling bottleneck.",
+      "category": "long",
+      "tokens": 136,
+      "description": "Technical description"
+    },
+    "long_4": {
+      "text": "Genetic evolution explores a 120-trait genome to find optimal architecture configurations for neural text compression with 100% reconstruction.",
+      "category": "long",
+      "tokens": 147,
+      "description": "Evolution description"
+    },
+    "long_5": {
+      "text": "Los Angeles (US), Jun 20 (IANS) A massive wildfire has broken out in the hills above Los Angeles, forcing thousands of residents to evacuate their homes.",
+      "category": "long",
+      "tokens": 152,
+      "description": "News headline"
+    },
+    
+    "technical_1": {
+      "text": "def train_model(config, data): model = LAITAdapter(config); optimizer = AdamW(model.parameters()); for epoch in range(100): loss = train_epoch(model, data); return model",
+      "category": "technical",
+      "tokens": 160,
+      "description": "Python code"
+    },
+    "technical_2": {
+      "text": "{\"name\": \"lait-adapter\", \"version\": \"2.0\", \"compression_ratio\": 0.5, \"d_model\": 128, \"n_layers\": 4, \"accuracy\": 1.0}",
+      "category": "technical",
+      "tokens": 120,
+      "description": "JSON config"
+    },
+    "technical_3": {
+      "text": "SELECT * FROM users WHERE age > 25 AND city = \"Los Angeles\" ORDER BY name ASC LIMIT 100",
+      "category": "technical",
+      "tokens": 88,
+      "description": "SQL query"
+    },
+    "technical_4": {
+      "text": "git commit -m \"feat: add GPU training support with CUDA 12.8 for RTX 5060\"",
+      "category": "technical",
+      "tokens": 75,
+      "description": "Git command"
+    },
+    "technical_5": {
+      "text": "curl -X POST http://localhost:8001/compress -H \"Content-Type: application/json\" -d '{\"text\": \"Hello world!\"}'",
+      "category": "technical",
+      "tokens": 108,
+      "description": "curl command"
+    },
+    
+    "sentence_1": {
+      "text": "The system achieves 100% reconstruction accuracy at all compression ratios from 1x to 16x on GPU.",
+      "category": "sentence",
+      "tokens": 97,
+      "description": "Achievement statement"
+    },
+    "sentence_2": {
+      "text": "LAIT integrates with Ollama language models via a Model Context Protocol server for real-time compression.",
+      "category": "sentence",
+      "tokens": 103,
+      "description": "Integration statement"
+    },
+    "sentence_3": {
+      "text": "The 120-trait genome defines architecture depth, model dimensions, compression parameters, and bottleneck types.",
+      "category": "sentence",
+      "tokens": 112,
+      "description": "Genome description"
+    },
+    "sentence_4": {
+      "text": "Training uses AdamW optimizer with cosine annealing scheduler and cross-entropy loss on 500 diverse samples.",
+      "category": "sentence",
+      "tokens": 108,
+      "description": "Training description"
+    },
+    "sentence_5": {
+      "text": "The MCP server exposes 5 tools: compress, decompress, list, stats, and clear for managing text compression.",
+      "category": "sentence",
+      "tokens": 107,
+      "description": "MCP description"
+    },
+    
+    "paragraph_1": {
+      "text": "LAIT (Latent Attention in Tokens) is a neural text compression system that achieves 100% lossless reconstruction of arbitrary text through learned latent representations. The system integrates with Ollama language models via a Model Context Protocol server, enabling real-time compression and decompression as a tool service.",
+      "category": "paragraph",
+      "tokens": 312,
+      "description": "System description paragraph"
+    },
+    "paragraph_2": {
+      "text": "The adapter is trained using genetic evolution across a 120-trait genome to find optimal architecture configurations. The genome defines architecture depth, model dimensions, compression parameters, bottleneck types, attention mechanisms, training hyperparameters, and evolution strategy. This approach achieves 100% reconstruction accuracy at compression ratios up to 16x on GPU.",
+      "category": "paragraph",
+      "tokens": 396,
+      "description": "Evolution description paragraph"
+    },
+    "paragraph_3": {
+      "text": "The MCP server exposes 5 tools for managing text compression: lait_compress compresses text to latent representation, lait_decompress decompresses latent back to text, lait_list lists all cached compressions, lait_stats gets compression statistics, and lait_clear clears the compression cache. The server runs on port 8001 and supports both API and MCP protocol access.",
+      "category": "paragraph",
+      "tokens": 408,
+      "description": "MCP description paragraph"
+    }
+  },
+  
+  "categories": {
+    "tiny": {"description": "1-5 tokens", "count": 5},
+    "short": {"description": "10-35 tokens", "count": 5},
+    "medium": {"description": "40-60 tokens", "count": 5},
+    "long": {"description": "130-155 tokens", "count": 5},
+    "technical": {"description": "75-160 tokens (code/JSON/SQL)", "count": 5},
+    "sentence": {"description": "95-115 tokens", "count": 5},
+    "paragraph": {"description": "300-410 tokens", "count": 3}
+  },
+  
+  "usage": {
+    "verify_adapter": "python verify_adapter.py",
+    "test_single": "python -c \"from verify_adapter import *; adapter, config, _ = load_adapter(); print(test_reconstruction(adapter, 'Hello world!'))\"",
+    "test_compression": "python -c \"from verify_adapter import *; adapter, config, _ = load_adapter(); print(test_compression(adapter, 'Hello world!', 0.5))\""
+  }
+}
